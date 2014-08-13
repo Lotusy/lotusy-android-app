@@ -1,17 +1,34 @@
 package com.lotusy.android.app;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.lotusy.android.app.activity.LoginActivity;
+import com.lotusy.android.app.activity.MainActivity;
 
-public class ApplicationActivity extends Activity {
+public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application);
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String accessToken = sharedPref.getString("_access_token", null);
+        if (accessToken==null) {
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivity(login);
+        } else {
+
+
+            Intent main = new Intent(this, MainActivity.class);
+            startActivity(main);
+        }
     }
 
 

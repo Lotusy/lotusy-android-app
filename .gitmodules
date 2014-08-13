@@ -1,0 +1,3 @@
+[submodule "lotusysdk"]
+	path = lotusysdk
+	url = https://github.com/Lotusy/lotusy-android-sdk.git

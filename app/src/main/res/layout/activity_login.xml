@@ -5,4 +5,22 @@
     tools:context="com.lotusy.android.app.activity.LoginActivity">
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login with Facebook"
+        android:id="@+id/fbbutton"
+        android:onClick="onFacebookClick"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login with Wechat"
+        android:id="@+id/webutton"
+        android:onClick="onWechatClick"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

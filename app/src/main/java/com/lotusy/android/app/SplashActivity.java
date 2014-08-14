@@ -10,12 +10,18 @@ import android.view.MenuItem;
 
 import com.lotusy.android.app.activity.LoginActivity;
 import com.lotusy.android.app.activity.MainActivity;
+import com.lotusy.android.sdk.AccountSDK;
+import com.lotusy.android.sdk.LotusySDK;
+import com.lotusy.android.sdk.domain.account.LotusyTokenAuthCallback;
+import com.lotusy.android.sdk.task.LotusyTaskResult;
 
 public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LotusySDK.setup("9D0E7CE8711F6F1CF87704557828A16E", LotusySDK.ENVIRONMENT.INT);
+
         setContentView(R.layout.activity_application);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -24,10 +30,16 @@ public class SplashActivity extends Activity {
             Intent login = new Intent(this, LoginActivity.class);
             startActivity(login);
         } else {
-
-
-            Intent main = new Intent(this, MainActivity.class);
-            startActivity(main);
+            final Activity activity = this;
+            AccountSDK.tokenLogin(accessToken, new LotusyTokenAuthCallback() {
+                @Override
+                public void callback(LotusyTaskResult lotusyTaskResult) {
+                if (lotusyTaskResult.isSuccess()) {
+                    Intent main = new Intent(activity, MainActivity.class);
+                    startActivity(main);
+                }
+                }
+            });
         }
     }
 

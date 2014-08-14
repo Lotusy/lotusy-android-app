@@ -1,31 +1,29 @@
-package com.lotusy.android.app.activity;
+package com.lotusy.android.app.wxapi;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
 import com.lotusy.android.app.R;
-import com.lotusy.android.app.wxapi.LotusyWechat;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.SendAuth;
+import com.tencent.mm.sdk.openapi.BaseReq;
+import com.tencent.mm.sdk.openapi.BaseResp;
+import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 
-public class LoginActivity extends Activity {
-
-    private IWXAPI api;
+public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_wxentry);
+
+        LotusyWechat.api().handleIntent(getIntent(), this);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.login, menu);
+        getMenuInflater().inflate(R.menu.wxentry, menu);
         return true;
     }
 
@@ -41,20 +39,13 @@ public class LoginActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onFacebookClick(View v) {
-        if(v.getId() == R.id.fbbutton){
-
-        }
+    @Override
+    public void onReq(BaseReq baseReq) {
+        int a = 1;
     }
 
-    public void onWechatClick(View v) {
-        if(v.getId() == R.id.webutton){
-            LotusyWechat.init(this);
-
-            final SendAuth.Req authReq = new SendAuth.Req();
-            authReq.scope = "snsapi_userinfo";
-            authReq.state = "weixin";
-            LotusyWechat.api().sendReq(authReq);
-        }
+    @Override
+    public void onResp(BaseResp baseResp) {
+        int b = 1;
     }
 }

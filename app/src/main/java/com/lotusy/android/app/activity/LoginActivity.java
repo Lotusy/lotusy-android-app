@@ -14,6 +14,10 @@ import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
 import com.lotusy.android.app.R;
 import com.lotusy.android.app.wxapi.LotusyWechat;
+import com.lotusy.android.sdk.AccountSDK;
+import com.lotusy.android.sdk.domain.account.LotusyToken;
+import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
+import com.lotusy.android.sdk.task.LotusyTaskResult;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.SendAuth;
 
@@ -69,7 +73,15 @@ public class LoginActivity extends Activity {
                             public void onCompleted(GraphUser user, Response response) {
                                 if (user != null) {
                                     String accessToken = session.getAccessToken();
-                                    String name = user.getName();
+
+                                    AccountSDK.authenticate("facebook", accessToken, new LotusyTokenCallback() {
+                                        @Override
+                                        public void callback(LotusyTaskResult result, LotusyToken token) {
+                                            if (result.isSuccess()) {
+
+                                            }
+                                        }
+                                    });
                                 }
                             }
                         }).executeAsync();

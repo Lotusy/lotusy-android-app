@@ -11,5 +11,7 @@
     <string name="title_section3">Section 3</string>
     <string name="title_activity_wxentry">WXEntryActivity</string>
     <string name="app_id">354427598055373</string>
+    <string name="title_activity_wbauth">WBAuthActivity</string>
+    <string name="title_activity_fbauth">FBAuthActivity</string>
 
 </resources>

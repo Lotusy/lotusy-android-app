@@ -23,7 +23,7 @@ android {
 dependencies {
     compile fileTree(dir: '../libs', include: ['*.jar'])
     // You must install or update the Support Repository through the SDK manager to use this dependency.
-    compile files('../lotusysdk/LotusySDK.jar')
+    compile files('../lotusysdk/LotusySDK.jar','../weibosdk/weibosdkcore.jar')
     compile project(':facebook')
     compile 'com.google.code.gson:gson:2.2.+'
     compile 'org.apache.httpcomponents:httpclient:4.1.1'

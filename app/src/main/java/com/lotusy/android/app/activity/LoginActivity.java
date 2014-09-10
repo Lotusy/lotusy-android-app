@@ -7,23 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.facebook.Request;
-import com.facebook.Response;
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.model.GraphUser;
 import com.lotusy.android.app.R;
-import com.lotusy.android.app.wxapi.LotusyWechat;
-import com.lotusy.android.sdk.AccountSDK;
-import com.lotusy.android.sdk.domain.account.LotusyToken;
-import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
-import com.lotusy.android.sdk.task.LotusyTaskResult;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.SendAuth;
+import com.lotusy.android.app.facebook.FBAuthActivity;
+import com.lotusy.android.app.weibo.WBAuthActivity;
 
 public class LoginActivity extends Activity {
-
-    private IWXAPI api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,54 +39,17 @@ public class LoginActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
-    }
-
     public void onFacebookClick(View v) {
         if(v.getId() == R.id.fbbutton){
-            // start Facebook Login
-            Session.openActiveSession(this, true, new Session.StatusCallback() {
-
-                // callback when session changes state
-                @Override
-                public void call(final Session session, SessionState state, Exception exception) {
-                    if (session.isOpened()) {
-                        Request.newMeRequest(session, new Request.GraphUserCallback() {
-
-                            // callback after Graph API response with user object
-                            @Override
-                            public void onCompleted(GraphUser user, Response response) {
-                                if (user != null) {
-                                    String accessToken = session.getAccessToken();
-
-                                    AccountSDK.authenticate("facebook", accessToken, new LotusyTokenCallback() {
-                                        @Override
-                                        public void callback(LotusyTaskResult result, LotusyToken token) {
-                                            if (result.isSuccess()) {
-
-                                            }
-                                        }
-                                    });
-                                }
-                            }
-                        }).executeAsync();
-                    }
-                }
-            });
+            Intent intent = new Intent(this, FBAuthActivity.class);
+            startActivity(intent);
         }
     }
 
     public void onWechatClick(View v) {
         if(v.getId() == R.id.webutton){
-            LotusyWechat.init(this);
-
-            final SendAuth.Req authReq = new SendAuth.Req();
-            authReq.scope = "snsapi_userinfo";
-            authReq.state = "weixin";
-            LotusyWechat.api().sendReq(authReq);
+            Intent intent = new Intent(this, WBAuthActivity.class);
+            startActivity(intent);
         }
     }
 

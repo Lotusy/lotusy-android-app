@@ -38,7 +38,7 @@ public class WBAuthActivity extends Activity {
                 if (mAccessToken.isSessionValid()) {
                     String accessToken = mAccessToken.getToken();
 
-                    AccountSDK.authenticate("facebook", accessToken, new LotusyTokenCallback() {
+                    AccountSDK.authenticate("weibo", accessToken, new LotusyTokenCallback() {
                         @Override
                         public void callback(LotusyTaskResult result, LotusyToken token) {
                             if (result.isSuccess()) {

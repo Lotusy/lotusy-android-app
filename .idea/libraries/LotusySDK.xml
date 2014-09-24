@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="LotusySDK">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lotusysdk/LotusySDK.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

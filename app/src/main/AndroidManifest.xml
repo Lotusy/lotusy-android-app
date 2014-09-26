@@ -49,6 +49,10 @@
             android:name=".weibo.WBAuthActivity"
             android:label="@string/title_activity_wbauth" >
         </activity>
+        <activity
+            android:name=".activity.trophy.TrophyBusinessList"
+            android:label="@string/title_activity_trophy_business_list" >
+        </activity>
     </application>
 
 </manifest>

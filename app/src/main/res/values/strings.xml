@@ -13,5 +13,6 @@
     <string name="app_id">354427598055373</string>
     <string name="title_activity_wbauth">WBAuthActivity</string>
     <string name="title_activity_fbauth">FBAuthActivity</string>
+    <string name="title_activity_trophy_business_list">TrophyBusinessList</string>
 
 </resources>

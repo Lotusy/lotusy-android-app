@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.lotusy.android.app.activity.MainActivity"
     android:padding="0dp"
-    android:background="#e9e9e9">
+    android:background="#e9e9e9"
+    android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 
     <FrameLayout
         android:layout_width="fill_parent"
